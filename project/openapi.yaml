@@ -1,0 +1,243 @@
+openapi: 3.1.0
+info:
+  title: Risk Analytics & Multi-Asset Argentina API
+  version: 1.0.0
+  description: Motor cuantitativo de riesgo de mercado para activos multi-asset vinculados a Argentina y criptoactivos. VaR, Expected Shortfall, stress testing y Monte Carlo (10k escenarios).
+  contact:
+    name: Quant Developer / ML Engineer
+    email: quant@example.com
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8000
+    description: Servidor de desarrollo local
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      tags: [health]
+      responses:
+        '200':
+          description: Estado de la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string}
+                  service: {type: string}
+                  version: {type: string}
+
+  /api/v1/health:
+    get:
+      summary: Health check (v1)
+      tags: [health]
+      responses:
+        '200':
+          description: Estado de la API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string}
+                  service: {type: string}
+                  version: {type: string}
+
+  /api/v1/assets/prices:
+    get:
+      summary: Precios históricos multi-asset
+      tags: [assets]
+      parameters:
+        - in: query
+          name: tickers
+          schema: {type: string}
+          description: Tickers separados por coma (ej. ZS=F,BZ=F,YPF)
+        - in: query
+          name: start
+          schema: {type: string, default: "2020-01-01"}
+          description: Fecha de inicio YYYY-MM-DD
+        - in: query
+          name: end
+          schema: {type: string}
+          description: Fecha de fin YYYY-MM-DD
+      responses:
+        '200':
+          description: Precios del activo solicitado
+        '503':
+          description: Error de servicio (yfinance no disponible)
+
+  /api/v1/assets/prices/crypto:
+    get:
+      summary: Precios cripto
+      tags: [assets]
+      parameters:
+        - in: query
+          name: tickers
+          schema: {type: string, default: "BTC-USD,ETH-USD,SOL-USD,XRP-USD,BNB-USD"}
+        - in: query
+          name: period
+          schema: {type: string, default: "3mo"}
+      responses:
+        '200':
+          description: Precios de cierre de cripto
+        '503':
+          description: Error de servicio
+
+  /api/v1/assets/correlation:
+    get:
+      summary: Matriz de correlación de retornos
+      tags: [assets]
+      parameters:
+        - in: query
+          name: start
+          schema: {type: string, default: "2020-01-01"}
+        - in: query
+          name: end
+          schema: {type: string}
+      responses:
+        '200':
+          description: Matriz de correlación
+        '503':
+          description: Error de servicio
+
+  /api/v1/risk/var:
+    get:
+      summary: Value at Risk (histórico y paramétrico)
+      tags: [risk]
+      parameters:
+        - in: query
+          name: confianza
+          schema: {type: number, default: 0.95, minimum: 0.5, maximum: 0.999}
+        - in: query
+          name: start
+          schema: {type: string, default: "2020-01-01"}
+        - in: query
+          name: end
+          schema: {type: string}
+      responses:
+        '200':
+          description: VaR por activo
+        '503':
+          description: Error de servicio
+
+  /api/v1/risk/expected-shortfall:
+    get:
+      summary: Expected Shortfall / CVaR
+      tags: [risk]
+      parameters:
+        - in: query
+          name: confianza
+          schema: {type: number, default: 0.95}
+        - in: query
+          name: start
+          schema: {type: string, default: "2020-01-01"}
+        - in: query
+          name: end
+          schema: {type: string}
+      responses:
+        '200':
+          description: Expected Shortfall por activo
+        '503':
+          description: Error de servicio
+
+  /api/v1/risk/drawdown:
+    get:
+      summary: Maximum Drawdown por activo
+      tags: [risk]
+      parameters:
+        - in: query
+          name: start
+          schema: {type: string, default: "2020-01-01"}
+        - in: query
+          name: end
+          schema: {type: string}
+      responses:
+        '200':
+          description: MDD por activo
+        '503':
+          description: Error de servicio
+
+  /api/v1/stress:
+    get:
+      summary: Pruebas de estrés (escenarios macro ARG)
+      tags: [stress]
+      parameters:
+        - in: query
+          name: start
+          schema: {type: string, default: "2020-01-01"}
+        - in: query
+          name: end
+          schema: {type: string}
+      responses:
+        '200':
+          description: Resultados de todos los escenarios de estrés
+        '503':
+          description: Error de servicio
+
+  /api/v1/monte-carlo:
+    get:
+      summary: Simulación de Monte Carlo
+      tags: [monte-carlo]
+      parameters:
+        - in: query
+          name: dias
+          schema: {type: integer, default: 1, minimum: 1, maximum: 30}
+        - in: query
+          name: n_scenarios
+          schema: {type: integer, default: 10000, minimum: 100, maximum: 100000}
+        - in: query
+          name: metodo
+          schema: {type: string, default: "bootstrap", enum: [gbm, bootstrap]}
+        - in: query
+          name: start
+          schema: {type: string, default: "2020-01-01"}
+        - in: query
+          name: end
+          schema: {type: string}
+      responses:
+        '200':
+          description: Resumen de P&L y percentiles de precio
+        '503':
+          description: Error de servicio
+
+  /api/v1/portfolio/summary:
+    get:
+      summary: Resumen de cartera igual ponderada
+      tags: [portfolio]
+      parameters:
+        - in: query
+          name: start
+          schema: {type: string, default: "2020-01-01"}
+        - in: query
+          name: end
+          schema: {type: string}
+      responses:
+        '200':
+          description: Métricas de cartera
+        '503':
+          description: Error de servicio
+
+  /api/v1/portfolio/metrics:
+    get:
+      summary: Métricas detalladas de cartera con pesos personalizados
+      tags: [portfolio]
+      parameters:
+        - in: query
+          name: start
+          schema: {type: string, default: "2020-01-01"}
+        - in: query
+          name: end
+          schema: {type: string}
+        - in: query
+          name: pesos
+          schema: {type: string}
+          description: Pesos JSON como string
+      responses:
+        '200':
+          description: Métricas con pesos personalizados
+        '503':
+          description: Error de servicio

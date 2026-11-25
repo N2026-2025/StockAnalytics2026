@@ -1,0 +1,280 @@
+[
+  {
+    "hypothesis": "rsi_oversold_wf",
+    "n_folds": 5,
+    "mean_oos_sharpe": 0.4108,
+    "mean_train_sharpe": 0.6124,
+    "degradation": 0.2016,
+    "stability": 1.0,
+    "param_mode": {
+      "rsi_threshold": 20
+    },
+    "folds": [
+      {
+        "fold": 1,
+        "train": "1980-12-12->2012-05-10",
+        "test": "2012-05-18->2002-07-23",
+        "best_params": {
+          "rsi_threshold": 20
+        },
+        "train_sharpe": 1.3676,
+        "oos_sharpe": 0.261,
+        "oos_trades": 96
+      },
+      {
+        "fold": 2,
+        "train": "1980-12-12->2002-07-16",
+        "test": "2002-07-24->1982-08-19",
+        "best_params": {
+          "rsi_threshold": 20
+        },
+        "train_sharpe": 0.45,
+        "oos_sharpe": 0.2711,
+        "oos_trades": 108
+      },
+      {
+        "fold": 3,
+        "train": "1980-12-12->1982-08-12",
+        "test": "1982-08-20->2007-08-27",
+        "best_params": {
+          "rsi_threshold": 20
+        },
+        "train_sharpe": 0.3796,
+        "oos_sharpe": 0.4824,
+        "oos_trades": 97
+      },
+      {
+        "fold": 4,
+        "train": "1980-12-12->2007-08-20",
+        "test": "2007-08-28->2004-11-02",
+        "best_params": {
+          "rsi_threshold": 20
+        },
+        "train_sharpe": 0.4118,
+        "oos_sharpe": 0.5891,
+        "oos_trades": 109
+      },
+      {
+        "fold": 5,
+        "train": "1980-12-12->2004-10-26",
+        "test": "2004-11-03->2025-05-30",
+        "best_params": {
+          "rsi_threshold": 20
+        },
+        "train_sharpe": 0.4531,
+        "oos_sharpe": 0.4503,
+        "oos_trades": 136
+      }
+    ]
+  },
+  {
+    "hypothesis": "mfi_oversold_wf",
+    "n_folds": 5,
+    "mean_oos_sharpe": 0.1692,
+    "mean_train_sharpe": 0.1989,
+    "degradation": 0.0297,
+    "stability": 0.8,
+    "param_mode": {
+      "mfi_threshold": 20
+    },
+    "folds": [
+      {
+        "fold": 1,
+        "train": "1980-12-12->2012-05-10",
+        "test": "2012-05-18->2002-07-23",
+        "best_params": {
+          "mfi_threshold": 20
+        },
+        "train_sharpe": 0.3347,
+        "oos_sharpe": -0.0761,
+        "oos_trades": 1036
+      },
+      {
+        "fold": 2,
+        "train": "1980-12-12->2002-07-16",
+        "test": "2002-07-24->1982-08-19",
+        "best_params": {
+          "mfi_threshold": 20
+        },
+        "train_sharpe": 0.1135,
+        "oos_sharpe": 0.2215,
+        "oos_trades": 930
+      },
+      {
+        "fold": 3,
+        "train": "1980-12-12->1982-08-12",
+        "test": "1982-08-20->2007-08-27",
+        "best_params": {
+          "mfi_threshold": 20
+        },
+        "train_sharpe": 0.1444,
+        "oos_sharpe": 0.1774,
+        "oos_trades": 755
+      },
+      {
+        "fold": 4,
+        "train": "1980-12-12->2007-08-20",
+        "test": "2007-08-28->2004-11-02",
+        "best_params": {
+          "mfi_threshold": 15
+        },
+        "train_sharpe": 0.1835,
+        "oos_sharpe": 0.3558,
+        "oos_trades": 391
+      },
+      {
+        "fold": 5,
+        "train": "1980-12-12->2004-10-26",
+        "test": "2004-11-03->2025-05-30",
+        "best_params": {
+          "mfi_threshold": 15
+        },
+        "train_sharpe": 0.2182,
+        "oos_sharpe": 0.1673,
+        "oos_trades": 622
+      }
+    ]
+  },
+  {
+    "hypothesis": "cci_oversold_wf",
+    "n_folds": 5,
+    "mean_oos_sharpe": 0.0661,
+    "mean_train_sharpe": 0.1382,
+    "degradation": 0.0721,
+    "stability": 0.8,
+    "param_mode": {
+      "cci_threshold": -150
+    },
+    "folds": [
+      {
+        "fold": 1,
+        "train": "1980-12-12->2012-05-10",
+        "test": "2012-05-18->2002-07-23",
+        "best_params": {
+          "cci_threshold": -150
+        },
+        "train_sharpe": 0.219,
+        "oos_sharpe": 0.0586,
+        "oos_trades": 2513
+      },
+      {
+        "fold": 2,
+        "train": "1980-12-12->2002-07-16",
+        "test": "2002-07-24->1982-08-19",
+        "best_params": {
+          "cci_threshold": -150
+        },
+        "train_sharpe": 0.1469,
+        "oos_sharpe": 0.1105,
+        "oos_trades": 2569
+      },
+      {
+        "fold": 3,
+        "train": "1980-12-12->1982-08-12",
+        "test": "1982-08-20->2007-08-27",
+        "best_params": {
+          "cci_threshold": -150
+        },
+        "train_sharpe": 0.1344,
+        "oos_sharpe": -0.0577,
+        "oos_trades": 2341
+      },
+      {
+        "fold": 4,
+        "train": "1980-12-12->2007-08-20",
+        "test": "2007-08-28->2004-11-02",
+        "best_params": {
+          "cci_threshold": -150
+        },
+        "train_sharpe": 0.0896,
+        "oos_sharpe": 0.1544,
+        "oos_trades": 2456
+      },
+      {
+        "fold": 5,
+        "train": "1980-12-12->2004-10-26",
+        "test": "2004-11-03->2025-05-30",
+        "best_params": {
+          "cci_threshold": -150
+        },
+        "train_sharpe": 0.1013,
+        "oos_sharpe": 0.0649,
+        "oos_trades": 2502
+      }
+    ]
+  },
+  {
+    "hypothesis": "momentum_breakout_wf",
+    "n_folds": 5,
+    "mean_oos_sharpe": -0.1694,
+    "mean_train_sharpe": -0.0895,
+    "degradation": 0.0799,
+    "stability": 0.0,
+    "param_mode": {
+      "roc_threshold": 0.1,
+      "adx_threshold": 30
+    },
+    "folds": [
+      {
+        "fold": 1,
+        "train": "1980-12-12->2012-05-10",
+        "test": "2012-05-18->2002-07-23",
+        "best_params": {
+          "roc_threshold": 0.1,
+          "adx_threshold": 30
+        },
+        "train_sharpe": -0.0194,
+        "oos_sharpe": -0.2102,
+        "oos_trades": 5937
+      },
+      {
+        "fold": 2,
+        "train": "1980-12-12->2002-07-16",
+        "test": "2002-07-24->1982-08-19",
+        "best_params": {
+          "roc_threshold": 0.1,
+          "adx_threshold": 30
+        },
+        "train_sharpe": -0.093,
+        "oos_sharpe": -0.1506,
+        "oos_trades": 4778
+      },
+      {
+        "fold": 3,
+        "train": "1980-12-12->1982-08-12",
+        "test": "1982-08-20->2007-08-27",
+        "best_params": {
+          "roc_threshold": 0.1,
+          "adx_threshold": 30
+        },
+        "train_sharpe": -0.1089,
+        "oos_sharpe": -0.1426,
+        "oos_trades": 5966
+      },
+      {
+        "fold": 4,
+        "train": "1980-12-12->2007-08-20",
+        "test": "2007-08-28->2004-11-02",
+        "best_params": {
+          "roc_threshold": 0.02,
+          "adx_threshold": 30
+        },
+        "train_sharpe": -0.1171,
+        "oos_sharpe": -0.0874,
+        "oos_trades": 5287
+      },
+      {
+        "fold": 5,
+        "train": "1980-12-12->2004-10-26",
+        "test": "2004-11-03->2025-05-30",
+        "best_params": {
+          "roc_threshold": 0.1,
+          "adx_threshold": 30
+        },
+        "train_sharpe": -0.109,
+        "oos_sharpe": -0.2562,
+        "oos_trades": 4500
+      }
+    ]
+  }
+]

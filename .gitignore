@@ -5,3 +5,8 @@
 .aider*
 .venv
 .env
+*.parquet
+stocks_df.parquet
+data.parquet
+.bruin.ymls
+aidev_example

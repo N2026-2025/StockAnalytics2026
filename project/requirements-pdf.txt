@@ -1,0 +1,4 @@
+# Dependencias para generación del PDF de preparación de entrevista.
+# Nota: reportlab ya está disponible en el entorno (>=5.0.1).
+# Si se prefiere fpdf2 (más liviano), instalar con: pip install fpdf2
+reportlab>=5.0.1
